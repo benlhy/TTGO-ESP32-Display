@@ -5,6 +5,7 @@ This repo is for the development on the TTGO ESP32 Display module.
 ## Getting started
 1. Install [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI)
 2. Install [Button2](https://github.com/LennartHennigs/Button2)
+3. Install PubSubClient in Library Manager
 
 ## Configure TFT_eSPI
 1. Check your location of your installed library: `~/Documents/Arduino/libraries/TFT_eSPI/`
@@ -15,9 +16,9 @@ This repo is for the development on the TTGO ESP32 Display module.
 ## Configure Arduino
 If you don't have ESP32 installed:
 1. Under `File>Preferences>Additional Boards Manager URLs` add in `https://dl.espressif.com/dl/package_esp32_index.json`
-2. Use `ESP Dev Module` as the board.
+2. Use `ESP Dev Module` as the board in the Board Manager. Other values can remain as default.
 
 ## Included Modules
 1. MQTT - PubSubClient
-2. WiFi
-3. TFT
+2. WiFi - Default
+3. TFT - TFT_eSPI
