@@ -14,6 +14,9 @@ unsigned int localPort = 2390;        // local port to listen for UDP packets
 const int NTP_PACKET_SIZE = 48;       // NTP time stamp is in the first 48 bytes of the message
 byte packetBuffer[NTP_PACKET_SIZE];   //buffer to hold incoming and outgoing packets
 
+uint8_t local_h, local_m, local_s;
+unsigned long ntp_got_time; // this is the local millis() that we got the time.
+
 void setup_wifi();
 void set_ntp();
 
@@ -59,6 +62,7 @@ void set_ntp(uint8_t local_time)
         tft.drawString(". ", 40 + count * 3, 35, 2);
         if (Udp.parsePacket())
         {
+            ntp_got_time = millis();
             Serial.println("packet received");
             // We've received a packet, read the data from it
             Udp.read(packetBuffer, NTP_PACKET_SIZE); // read the packet into the buffer
@@ -80,6 +84,7 @@ void set_ntp(uint8_t local_time)
             const unsigned long seventyYears = 2208988800UL;
             // subtract seventy years:
             unsigned long epoch = secsSince1900 - seventyYears;
+
             // print Unix time:
             Serial.println(epoch);
 
@@ -102,9 +107,10 @@ void set_ntp(uint8_t local_time)
             }
             Serial.println(epoch % 60);              // print the second
             tft.drawRect(0, 30, 150, 10, TFT_BLACK); // clear line.
-            uint8_t hh = (epoch % 86400L) / 3600 + local_time;
-            uint8_t mm = (epoch % 3600) / 60;
-            uint8_t ss = epoch % 60;
+            local_h = (epoch % 86400L) / 3600 + local_time;
+            local_m = (epoch % 3600) / 60;
+            local_s = epoch % 60;
+
             char buf[128];
             snprintf(buf, sizeof(buf), "NTP: %d:%d:%d", hh, mm, ss);
             tft.drawString(buf, 0, 35, 2);

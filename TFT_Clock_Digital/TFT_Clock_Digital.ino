@@ -37,7 +37,7 @@ void setup(void)
   setup_display();
   setup_wifi();
   setup_mqtt();
-  set_ntp(8);
+  set_ntp(8); // set ntp to local time.
 }
 
 void loop()
