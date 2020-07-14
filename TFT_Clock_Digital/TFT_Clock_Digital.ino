@@ -37,6 +37,7 @@ void setup(void)
   setup_display();
   setup_wifi();
   setup_mqtt();
+  set_ntp(8);
 }
 
 void loop()
