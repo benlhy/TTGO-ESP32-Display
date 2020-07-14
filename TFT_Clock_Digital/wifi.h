@@ -30,8 +30,8 @@ void setup_wifi()
     Serial.println(WiFi.localIP());
     tft.fillScreen(TFT_BLACK);
 
-    tft.drawString("IP address:", 0, 120, 2);
-    tft.drawString(WiFi.localIP().toString(), 80, 120, 2);
+    tft.drawString("IP address:", 0, 5, 2);
+    tft.drawString(WiFi.localIP().toString(), 80, 5, 2);
 }
 
 #endif
