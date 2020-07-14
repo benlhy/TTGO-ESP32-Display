@@ -19,6 +19,7 @@ unsigned long ntp_got_time; // this is the local millis() that we got the time.
 
 void setup_wifi();
 void set_ntp();
+void deep_sleep();
 
 unsigned long sendNTPpacket(IPAddress &address);
 
@@ -38,6 +39,14 @@ void setup_wifi()
         Serial.print(".");
         tft.drawString(".", counter, 30, 2);
         counter++;
+        if (counter == 20)
+        {
+            WiFi.disconnect(true);
+            WiFi.mode(WIFI_OFF);
+
+            esp_sleep_enable_timer_wakeup(5 * 1000000ULL);
+            esp_deep_sleep_start();
+                }
     }
 
     Serial.println();
