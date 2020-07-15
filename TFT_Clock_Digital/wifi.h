@@ -116,12 +116,12 @@ void set_ntp(uint8_t local_time)
             }
             Serial.println(epoch % 60);              // print the second
             tft.fillRect(0, 35, 150, 10, TFT_BLACK); // clear line.
-            local_h = (epoch % 86400L) / 3600 + local_time;
+            local_h = ((epoch % 86400L) / 3600 + local_time) % 24;
             local_m = (epoch % 3600) / 60;
             local_s = epoch % 60;
 
             char buf[128];
-            snprintf(buf, sizeof(buf), "NTP: %d:%d:%d", hh, mm, ss);
+            snprintf(buf, sizeof(buf), "NTP: %d:%d:%d", local_h, local_m, local_s);
             tft.drawString(buf, 0, 35, 2);
             break;
         }
