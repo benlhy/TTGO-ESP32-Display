@@ -46,7 +46,7 @@ void setup_wifi()
 
             esp_sleep_enable_timer_wakeup(5 * 1000000ULL);
             esp_deep_sleep_start();
-                }
+        }
     }
 
     Serial.println();
@@ -115,7 +115,7 @@ void set_ntp(uint8_t local_time)
                 Serial.print('0');
             }
             Serial.println(epoch % 60);              // print the second
-            tft.drawRect(0, 30, 150, 10, TFT_BLACK); // clear line.
+            tft.fillRect(0, 35, 150, 10, TFT_BLACK); // clear line.
             local_h = (epoch % 86400L) / 3600 + local_time;
             local_m = (epoch % 3600) / 60;
             local_s = epoch % 60;

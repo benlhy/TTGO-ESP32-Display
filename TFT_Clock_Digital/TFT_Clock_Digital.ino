@@ -34,10 +34,11 @@ code	color
 
 void setup(void)
 {
+  Serial.begin(115200);
   setup_display();
   setup_wifi();
   setup_mqtt();
-  set_ntp(8); // set ntp to local time.
+  set_ntp(8); // set ntp to local time and print to screen
 }
 
 void loop()
