@@ -31,13 +31,15 @@ code	color
 #include "wifi.h"
 #include "mqtt.h"
 #include "display.h"
+//#include "ble.h"
 
 void setup(void)
 {
   Serial.begin(115200);
-  setup_display();
-  setup_wifi();
-  setup_mqtt();
+  display_init();
+  wifi_init();
+  mqtt_init();
+  //ble_init();
   set_ntp(8); // set ntp to local time and print to screen
 }
 

@@ -1,6 +1,8 @@
 #ifndef WIFI_H
 #define WIFI_H
 
+#include "Arduino.h"
+
 #include <WiFi.h>
 #include <WiFiUdp.h>
 
@@ -18,13 +20,13 @@ uint8_t local_h, local_m, local_s;
 unsigned long ntp_got_time; // this is the local millis() that we got the time.
 
 void setup_wifi();
-void set_ntp();
+void set_ntp(uint8_t local_time);
 void deep_sleep();
 
 unsigned long sendNTPpacket(IPAddress &address);
 
 // Connect to WiFi network
-void setup_wifi()
+void wifi_init()
 {
     tft.setTextColor(TFT_GREEN, TFT_BLACK);
     tft.drawString("Connecting: ", 0, 10, 2);
